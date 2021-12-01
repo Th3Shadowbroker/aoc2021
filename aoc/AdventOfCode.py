@@ -8,11 +8,7 @@ from importlib import import_module
 
 class AdventOfCode:
 
-    __instance: 'AdventOfCode'
-
     def __init__(self, root_dir: str, year: int) -> None:
-        AdventOfCode.__instance = self
-
         # Setup environment
         environment_file = path.join(root_dir, ".env")
         if not path.exists(environment_file):
@@ -63,7 +59,3 @@ class AdventOfCode:
         url = f"https://adventofcode.com/{self.__year}/day/{day}/input"
         response = self.__client.get(url)
         return response.content.decode("utf-8", "strict")
-
-    @staticmethod
-    def instance() -> 'AdventOfCode':
-        return AdventOfCode.__instance
